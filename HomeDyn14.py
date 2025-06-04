@@ -31,16 +31,16 @@ def count_numbers_without_double_zeros(K, N):
     if N == 1:
         return K
     
-    dp0 = [0] * (N + 1)
-    dp1 = [0] * (N + 1)
-    dp0[1] = 1
-    dp1[1] = K - 1
+    end_with_zero = [0] * (N + 1)
+    end_with_no_zero = [0] * (N + 1)
+    end_with_zero[1] = 1
+    end_with_no_zero[1] = K - 1
     
     for i in range(2, N + 1):
-        dp0[i] = dp1[i - 1]
-        dp1[i] = (dp0[i - 1] + dp1[i - 1]) * (K - 1)
+        end_with_zero[i] = end_with_no_zero[i - 1]
+        end_with_no_zero[i] = (end_with_zero[i - 1] + end_with_no_zero[i - 1]) * (K - 1)
     
-    return dp0[N] + dp1[N]
+    return end_with_zero[N] + end_with_no_zero[N]
 
 
 def solve():
@@ -52,7 +52,6 @@ def solve():
         K = int(input("Введите основание системы счисления K (2 ≤ K ≤ 10): "))
         N = int(input("Введите количество разрядов N (1 < N < 20, N + K < 26): "))
         
-        # Проверка входных данных
         if not (2 <= K <= 10):
             raise ValueError("Основание системы счисления K должно быть от 2 до 10")
         if not (1 < N < 20):

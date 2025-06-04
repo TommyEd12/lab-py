@@ -18,7 +18,6 @@ def build_expression_tree(rpn_expression):
     """
     stack = []
     tokens = rpn_expression.split()
-    
     for token in tokens:
         if token.isdigit():
             stack.append(NodeClass(int(token)))
@@ -37,7 +36,6 @@ def build_expression_tree(rpn_expression):
             node.right = stack.pop()
             node.left = stack.pop()
             stack.append(node)
-    
     return stack.pop()
 
 
