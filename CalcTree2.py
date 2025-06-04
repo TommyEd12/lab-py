@@ -1,5 +1,5 @@
 class NodeClass:
-    """Узел дерева выражения"""
+    """Класс узла дерева выражения"""
     def __init__(self, value):
         self.value = value
         self.left = None
@@ -40,6 +40,7 @@ def build_expression_tree(rpn_expression):
     
     return stack.pop()
 
+
 def remove_additions(root):
     """
     Рекурсивно удаляет операции сложения из дерева, заменяя их вычисленным значением
@@ -63,6 +64,7 @@ def remove_additions(root):
         return NodeClass(left_value + right_value)
     
     return root
+
 
 def evaluate_tree(node):
     """
@@ -89,6 +91,7 @@ def evaluate_tree(node):
     elif node.value == -4:
         return left_value // right_value
 
+
 def read_rpn_from_file(filename):
     """
     Читает выражение в обратной польской записи из файла
@@ -101,6 +104,7 @@ def read_rpn_from_file(filename):
     """
     with open(filename, 'r') as f:
         return f.readline().strip()
+    
 
 def solve_problem(filename):
     """
@@ -126,7 +130,7 @@ def main():
     """
     Точка входа в программу
     """
-    filename = "input_rpn.txt" 
+    filename = "input_rpn.txt"
     try:
         root = solve_problem(filename)
         print(f"Указатель на корень преобразованного дерева: {root}")
